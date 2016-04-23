@@ -1,0 +1,28 @@
+name: playback-dpm
+version: trunk+snap1
+summary:  Video player built using electron and node.js
+description: |
+ Playback has the following features:
+ - Plays .MP4 and .WebM videos
+ - Streaming to Chromecast
+ - Streaming from http links, torrent magnet links, and IPFS links
+ - WebTorrent support – can torrent from/to WebRTC peers ("web peers")
+
+apps:
+  playback:
+    command: playback
+    plugs: [unity7, home]
+
+parts:
+  playback:
+    plugin: electron
+    source: https://github.com/mafintosh/playback
+    source-type: git
+    node-packages:
+      - electron-packager
+      - electron-prebuilt
+    build-packages:
+      - build-essential
+      - git
+      - libgnome-keyring-dev
+      - fakeroot
