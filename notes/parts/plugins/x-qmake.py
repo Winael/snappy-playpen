@@ -33,33 +33,27 @@ class QmakePlugin(make.MakePlugin):
         Being based on qmake, the project needs the `qmake` command to be run
         before doing the build. The `qmake` command generates a Makefile that
         can then be processed with standard `make`.
-
-        The project does not have an install target, so we are not using the
-        parent class' build method and we install the built binary
-        programmatically.
         """
 
         # Skip over parent class to copy the source dir
         # to the build dir
         snapcraft.BasePlugin.build(self)
 
-        qmake_command = ['qmake']
-        make_all_command = ['make', 'all']
+        # Define commands to be run
+        qmake_command = ['qmake', 'PREFIX={}'.format(self.installdir),
+                         os.path.join(self.builddir, 'Notes.pro'),
+                         '-o', os.path.join(self.builddir, 'Makefile')]
+        make_command = ['make']
 
         # Run qmake to generate a Makefile
         self.run(qmake_command)
-        # Run make to build the sources only (no installation)
-        self.run(make_all_command)
 
-        # The upstream build does not have an install target, but it puts
-        # the one single binary (Notes) to ../bin relative to the build dir.
-        # We then do the installation of that file programmatically
-        binary_file = 'Notes'
-        binary_dir = 'bin'
+        # TODO: this does not seem to work - it does not find the Makefile
+        #super().build()
 
-        os.makedirs(os.path.join(self.installdir, binary_dir))
+        # Run make to build the sources
+        self.run(make_command +
+                 ['-j{}'.format(self.project.parallel_build_count)])
 
-        os.link(
-            os.path.join(os.path.dirname(self.builddir), binary_dir,
-                                         binary_file),
-            os.path.join(self.installdir, binary_dir, binary_file))
+        # Run make to install the binaries
+        self.run(make_command + ['install'])

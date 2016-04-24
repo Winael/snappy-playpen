@@ -1,5 +1,6 @@
 name: notes-dpm
-version: 0.0.8+snap2
+# Note on version: $UPSTREAM_VERSION~snap$SNAP_BUILD.git$GIT_COMMIT_ID
+version: 0.0.8~snap1.git8f9a5e0
 summary: Note taking application, write down your thoughts.
 description: |
   Notes is a tool for the things you need to write down off your
@@ -15,7 +16,8 @@ apps:
 parts:
   notes:
     plugin: qmake
-    source: git@github.com:nuttyartist/notes.git
+    source: git@github.com:dplanella/notes.git
+    source-branch: dev
     source-subdir: src
     build-packages:
       - qtbase5-dev
