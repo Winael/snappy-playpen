@@ -48,24 +48,16 @@ class AtomPlugin(nodejs.NodePlugin):
 
         self.run(build_command)
         self.run(install_command)
+        self._install_binary()
 
-        # binary_file = 'atom.sh'
-        # binary_dir = 'bin'
-        #
-        # os.makedirs(os.path.join(self.installdir, binary_dir))
-        #
-        # os.link(
-        #     os.path.join(os.path.dirname(self.builddir), binary_dir,
-        #                                  binary_file),
-        #     os.path.join(self.installdir, binary_dir, binary_file))
+    def _install_binary(self):
+        binary_installfile = 'atom.sh'
+        command_name = os.path.splitext(binary_installfile)[0]
+        binary_installdir = 'bin'
+        module_installdir = os.path.join('lib', 'node_modules', 'atom')
 
-
-        # binary_file = 'Notes'
-        # binary_dir = 'bin'
-        #
-        # os.makedirs(os.path.join(self.installdir, binary_dir))
-        #
-        # os.link(
-        #     os.path.join(os.path.dirname(self.builddir), binary_dir,
-        #                                  binary_file),
-        #     os.path.join(self.installdir, binary_dir, binary_file))
+        os.symlink(
+            os.path.relpath(os.path.join(self.installdir, module_installdir,
+                                         binary_installfile),
+                            self.installdir),
+            os.path.join(self.installdir, binary_installdir, command_name))
