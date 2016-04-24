@@ -26,3 +26,20 @@ parts:
       - git
       - libgnome-keyring-dev
       - fakeroot
+    stage-packages:
+      - gconf2
+      - gconf-service
+      - libgtk2.0-0
+      - libudev1
+      - libgcrypt20
+      - libgnome-keyring0
+      - gir1.2-gnomekeyring-1.0
+      - libnotify4
+      - libxtst6
+      - libnss3
+      - python
+      - gvfs-bin
+      - xdg-utils
+      - libdbus-1-3
+      - libcap2
+

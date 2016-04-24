@@ -22,7 +22,7 @@ import snapcraft
 from snapcraft.plugins import nodejs
 import sysconfig
 
-class AtomPlugin(nodejs.NodePlugin):
+class ElectronPlugin(nodejs.NodePlugin):
 
     def __init__(self, name, options, project):
         super().__init__(name, options, project)
@@ -37,4 +37,3 @@ class AtomPlugin(nodejs.NodePlugin):
 
         if os.path.exists(os.path.join(self.builddir, 'package.json')):
             self.run(['npm', 'run', 'rebuild'])
-
