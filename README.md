@@ -14,6 +14,7 @@ These are the apps that are either already snapped or currently worked on
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | [Agar.io Clone](https://github.com/huytd/agar.io-clone) | Games  | Alan Pope  | BLOCKED  | [AppArmor denials](http://paste.ubuntu.com/15833002/)  | Tries to read `/var/snap` (should use `$SNAP` instead) (previous comment: Upstream bug - uses gulp at runtime, fails due to RO fs)  |
 | [Atom](https://github.com/atom/atom)  | Development  | David Planella  | INPROGRESS  | - | Need to write a custom Snapcraft plugin that executes Atom's build steps |
+| [Etherpad-lite](https://github.com/ether/etherpad-lite) | Collaborative tool | Vinz Jobard (Winael) | BLOCKED | Need to copy full folder from parts src | Needs help to understand how to copy full folders | 
 
 ## Snap shopping list
 
