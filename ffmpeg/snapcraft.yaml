@@ -1,27 +1,10 @@
-#################################################
-##                                             ##
-## ffmpeg - Snapcraft.yaml                     ##
-##                                             ##
-#################################################
-##                                             ##
-## 2016-05-06 : Adding some precision about    ##
-##              the lack of confinement for    ##
-##              this snap in description field.##
-##              Removing the ffmpeg parts and  ##
-##              re-use the one added on the    ##
-##              Snappy/Parts page on           ##
-##              wiki.uubuntu.com               ##
-##                                             ##
-#################################################
-
 name: ffmpeg
-version: 4.01~git
+version: 3.0~git
 summary: Tools for transcoding, streaming and playing of multimedia files
 description: FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
  mux, demux, stream, filter and play pretty much anything that humans and
  machines have created. It supports the most obscure ancient formats up to the
  cutting edge.
- Due to the lack of interfaces for medias, this snap is currently unconfined
  This package contains;
   ffmpeg - a command line tool to convert multimedia files between formats
   ffserver - a multimedia streaming server for live broadcasts
@@ -51,12 +34,7 @@ plugs:
     security-template: unconfined
 
 parts:
-
-  # 2016-05-06: [Winael] Removing the ffmpeg parts and re-use the one added on the Snappy/Parts page on wiki.uubuntu.com
-
   launcher:
-    after:
-      - ffmpeg
     plugin: copy
     files:
       ffmpeg.launcher: ffmpeg.launcher
@@ -64,4 +42,36 @@ parts:
       ffprobe.launcher: ffprobe.launcher
       ffserver.launcher: ffserver.launcher
 
-  
+  ffmpeg:
+    plugin: autotools
+    configflags: [--enable-gpl, --enable-libass, --enable-libfreetype, --enable-libmp3lame, --enable-libopus, --enable-libtheora, --enable-libvorbis, --enable-libvpx, --enable-libx264, --enable-libx265, --enable-nonfree]
+    source: git://source.ffmpeg.org/ffmpeg.git
+    source-type: git
+    build-packages:
+      - git
+      - g++
+      - make
+      - yasm
+      - autoconf
+      - libtool
+      - cmake
+      - pkg-config
+      - automake
+      - build-essential
+      - libass-dev
+      - libfreetype6-dev
+      - libsdl1.2-dev
+      - libtheora-dev
+      - libva-dev
+      - libvdpau-dev
+      - libvorbis-dev
+      - libxcb1-dev
+      - libxcb-shm0-dev
+      - libxcb-xfixes0-dev
+      - texinfo
+      - zlib1g-dev
+      - libx264-dev
+      - libmp3lame-dev
+      - libopus-dev
+      - libx265-dev
+      - libvpx-dev
