@@ -1,7 +1,7 @@
 name: etherpad-lite-unofficial # the name of the snap
 version: 0.1 # the version of the snap
 # The vendor for the snap (replace 'Vendor <email@example.com>')
-vendor: Winael <vinzjobard@ubuntu.com>
+# vendor: Winael <vinzjobard@ubuntu.com>
 
 summary: Etherpad-lite, eally-real time collaborative editor # 79 char long summary
 description: Etherpad is a really-real time collaborative editor maintained by the Etherpad Community # A longer description for the snap
