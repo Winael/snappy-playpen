@@ -1,7 +1,9 @@
 Etherpad-lite
 =============
 
-This project is about creating a snap of etherpad-lite, a coillaborative text-editor
+This project is about creating a snap of etherpad-lite, a coillaborative text-editor.
+
+To talk and collaborate, you can join the Telegram group: https://telegram.me/joinchat/BAY0lz6hN_sV9wlfwoNsUg
 
 Architecture
 ------------
